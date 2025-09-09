@@ -5,7 +5,7 @@ function Login() {
   const navigate = useNavigate();
   const { search } = useLocation();
   const params = new URLSearchParams(search);
-  const verified = params.get("verified"); // check query param
+  const verified = params.get("verified"); 
 
   const [form, setForm] = useState({
     email: "",
