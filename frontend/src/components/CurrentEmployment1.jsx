@@ -3,6 +3,8 @@ import React, { useState } from "react";
 function CurrentEmployment1() {
   const [isEmployed, setIsEmployed] = useState(false);
   const [sector, setSector] = useState("");
+  const [terms, setTerms] = useState("");
+
 
   
   const fieldClass = "border p-2 rounded w-[500px] mb-4";
@@ -58,11 +60,19 @@ function CurrentEmployment1() {
                   placeholder="Present Substantive Post"
                   className={fieldClass}
                 />
-                <input
-                  type="text"
-                  placeholder="Terms of Service"
+              <label className="block mb-2">Terms of Service</label>
+                <select
+                  value={terms}
+                  onChange={(e) => setTerms(e.target.value)}
                   className={fieldClass}
-                />
+                >
+                  <option value="">Select Terms</option>
+                  <option value="permanent">Permanent and Pensionable</option>
+                  <option value="contract">Contract</option>
+                  <option value="short-term">Short Term</option>
+                </select>
+
+
                 <input
                   type="text"
                   placeholder="Job Group"
