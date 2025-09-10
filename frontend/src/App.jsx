@@ -8,10 +8,9 @@ import Register from './components/Register';
 import HomePage from './components/HomePage';
 import VerificationNotification from './components/VerificationNotification';
 import Default from './components/Default'
-import EmailVerified from './components/EmailVerified'
 import VerifyEmail from './components/VerifyEmail'
 import CurrentEmployment from './components/CurrentEmployment'
-import New from './components/New'
+import CurrentEmployment1 from './components/CurrentEmployment1'
 
 
 
@@ -26,10 +25,9 @@ function App() {
        <Route path="/register" element={<Register />} />
        <Route path="/login" element={<Login />} />
        <Route path="/verify-notification" element={<VerificationNotification />} />
-       <Route path="/email-verified" element={<EmailVerified />}/>
        <Route path="/signup/email-verification/verify" element={<VerifyEmail />}/>
        <Route path="/employee" element={<CurrentEmployment />}/>
-        <Route path="/employeeDetails" element={<New />}/>
+        <Route path="/employeeDetails" element={<CurrentEmployment1 />}/>
 
      </Routes>
      </BrowserRouter>
