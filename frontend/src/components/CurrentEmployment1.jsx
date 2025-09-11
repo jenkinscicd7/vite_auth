@@ -60,7 +60,7 @@ function CurrentEmployment1() {
                   placeholder="Present Substantive Post"
                   className={fieldClass}
                 />
-              <label className="block mb-2">Terms of Service</label>
+              
                 <select
                   value={terms}
                   onChange={(e) => setTerms(e.target.value)}
