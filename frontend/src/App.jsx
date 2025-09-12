@@ -11,6 +11,7 @@ import Default from './components/Default'
 import VerifyEmail from './components/VerifyEmail'
 import CurrentEmployment from './components/CurrentEmployment'
 import CurrentEmployment1 from './components/CurrentEmployment1'
+import Form from './components/Form'
 
 
 
@@ -27,7 +28,10 @@ function App() {
        <Route path="/verify-notification" element={<VerificationNotification />} />
        <Route path="/signup/email-verification/verify" element={<VerifyEmail />}/>
        <Route path="/employee" element={<CurrentEmployment />}/>
-        <Route path="/employeeDetails" element={<CurrentEmployment1 />}/>
+       <Route path="/employeeDetails" element={<CurrentEmployment1 />}/>
+        <Route path="/newemployeedetails" element={<Form />}/>
+
+
 
      </Routes>
      </BrowserRouter>

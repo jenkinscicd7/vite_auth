@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function CurrentEmployment1() {
+function Form() {
   const [isEmployed, setIsEmployed] = useState(false);
   const [sector, setSector] = useState("");
   const [terms, setTerms] = useState("");
@@ -171,4 +171,4 @@ function CurrentEmployment1() {
   );
 }
 
-export default CurrentEmployment1;
+export default Form;
