@@ -15,7 +15,7 @@ function CurrentEmployment1() {
   const [positionHeld, setPositionHeld] = useState("");
   const [grossSalary, setGrossSalary] = useState("");
 
-  const fieldClass = "border p-2 rounded w-full mb-4";
+  const fieldClass = "border p-2 rounded w-full mb-4 px-4 py-2 text-center";
 
   const handleSubmit = (e) => {
     e.preventDefault();
