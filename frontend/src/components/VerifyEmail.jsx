@@ -10,7 +10,7 @@ function VerifyEmail() {
   const expires = searchParams.get("expires");
   const signature = searchParams.get("signature");
 
-  useEffect(() => {
+  useEffect(() => {  
     fetch(`http://127.0.0.1:8000/api/email/verify/${id}/${hash}?expires=${expires}&signature=${signature}`, {
       method: "GET",
       headers: {

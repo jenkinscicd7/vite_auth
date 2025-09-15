@@ -5,7 +5,6 @@ function CurrentEmployment1() {
   const [sector, setSector] = useState("");
   const [terms, setTerms] = useState("");
 
-  
   const [appointmentDate, setAppointmentDate] = useState("");
   const [publicBody, setPublicBody] = useState("");
   const [dutyStation, setDutyStation] = useState("");
@@ -16,10 +15,10 @@ function CurrentEmployment1() {
   const [positionHeld, setPositionHeld] = useState("");
   const [grossSalary, setGrossSalary] = useState("");
 
-  const fieldClass = "border p-2 rounded w-[500px] mb-4";
+  const fieldClass = "border p-2 rounded w-full mb-4";
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const formData = {
       isEmployed,
@@ -40,7 +39,6 @@ function CurrentEmployment1() {
     };
 
     console.log("Form Data:", formData);
-    
   };
 
   return (
@@ -48,19 +46,21 @@ function CurrentEmployment1() {
       <div className="bg-white shadow-md rounded-2xl p-6">
         <h2 className="text-xl font-bold mb-4">Current Employment</h2>
 
-        <form onSubmit={handleSubmit}>
-          <label className="block mb-2">Are you currently employed?</label>
-          <select
-            value={isEmployed}
-            onChange={(e) => setIsEmployed(e.target.value === "true")}
-            className={fieldClass}
-          >
-            <option value="false">No</option>
-            <option value="true">Yes</option>
-          </select>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block mb-2">Are you currently employed?</label>
+            <select
+              value={isEmployed}
+              onChange={(e) => setIsEmployed(e.target.value === "true")}
+              className={fieldClass}
+            >
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
 
           {isEmployed && (
-            <>
+            <div className="bg-gray-50 border rounded-xl p-4">
               <label className="block mb-2">Date of Appointment</label>
               <input
                 type="date"
@@ -81,7 +81,7 @@ function CurrentEmployment1() {
               </select>
 
               {sector === "public" && (
-                <div className="bg-gray-50 border rounded-xl p-4 mb-4">
+                <div className="mt-4">
                   <h3 className="text-lg font-semibold mb-2">
                     Public Service Details
                   </h3>
@@ -129,7 +129,7 @@ function CurrentEmployment1() {
               )}
 
               {sector === "private" && (
-                <div className="bg-gray-50 border rounded-xl p-4">
+                <div className="mt-4">
                   <h3 className="text-lg font-semibold mb-2">
                     Private Sector Details
                   </h3>
@@ -156,12 +156,12 @@ function CurrentEmployment1() {
                   />
                 </div>
               )}
-            </>
+            </div>
           )}
 
           <button
             type="submit"
-            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-xl"
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded-xl mt-4"
           >
             Submit
           </button>
@@ -172,3 +172,4 @@ function CurrentEmployment1() {
 }
 
 export default CurrentEmployment1;
+
