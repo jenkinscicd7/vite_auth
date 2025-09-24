@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function VerificationNotification() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
 
   const handleResend = async () => {
     setLoading(true);

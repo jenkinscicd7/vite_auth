@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
@@ -79,7 +79,15 @@ function Login() {
           className="w-full bg-blue-600 text-white font-medium p-3 rounded-lg hover:bg-blue-700 transition duration-200"
         >
           Login
-        </button>
+        </button>        {/* Forgot password link */}
+        <div className="text-center mt-4">
+          <Link
+            to="/forgot-password"
+            className="text-blue-600 hover:underline text-sm"
+          >
+            Forgot your password?
+          </Link>
+        </div>
       </form>
     </div>
   );

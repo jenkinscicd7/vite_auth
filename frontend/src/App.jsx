@@ -12,6 +12,9 @@ import VerifyEmail from './components/VerifyEmail'
 import CurrentEmployment from './components/CurrentEmployment'
 import CurrentEmployment1 from './components/CurrentEmployment1'
 import Form from './components/Form'
+import ForgotPassword from './components/ForgotPassword'
+import EnterOTP from './components/EnterOTP'
+import ResetPassword from './components/ResetPassword'
 
 
 
@@ -29,7 +32,11 @@ function App() {
        <Route path="/signup/email-verification/verify" element={<VerifyEmail />}/>
        <Route path="/employee" element={<CurrentEmployment />}/>
        <Route path="/employeeDetails" element={<CurrentEmployment1 />}/>
-        <Route path="/newemployeedetails" element={<Form />}/>
+       <Route path="/newemployeedetails" element={<Form />}/>
+       <Route path="/forgot-password" element={<ForgotPassword />}/>
+       <Route path="/enter-otp" element={<EnterOTP/>}/>
+        <Route path="/reset-password" element={<ResetPassword />}/>
+
 
 
 
