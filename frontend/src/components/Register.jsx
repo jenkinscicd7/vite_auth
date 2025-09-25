@@ -22,6 +22,19 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (form.password.length < 8) {
+    setMessage("Password must be at least 8 characters long");
+    setError(true);
+    return;
+  }
+
+  if (form.password !== form.password_confirmation) {
+    setMessage("Passwords do not match");
+    setError(true);
+    return;
+  }
+
     const res = await fetch("http://127.0.0.1:8000/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
