@@ -37,7 +37,7 @@ function EnterOTP() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-semibold mb-4 text-center">Enter OTP</h2>
         <form onSubmit={handleSubmit}>

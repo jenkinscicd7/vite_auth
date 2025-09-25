@@ -7,7 +7,6 @@ function ResetPassword() {
   const [form, setForm] = useState({ password: "", confirmPassword: "" });
   const [message, setMessage] = useState("");
 
-  // get email passed from OTP screen
   useEffect(() => {
     if (location.state?.email) {
       setEmail(location.state.email);
@@ -31,7 +30,7 @@ function ResetPassword() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email, // now comes from location.state
+          email,
           password: form.password,
           password_confirmation: form.confirmPassword,
         }),
@@ -49,15 +48,15 @@ function ResetPassword() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+    <div className="flex items-center justify-center min-h-screen bg-white">
+      <div className="bg-white shadow-lg rounded-2xl p-10 w-full max-w-xl">
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Reset Password
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
               New Password
             </label>
             <input
@@ -66,13 +65,13 @@ function ResetPassword() {
               value={form.password}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-5 py-3 text-lg rounded-xl border shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
               placeholder="Enter new password"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
               Confirm Password
             </label>
             <input
@@ -81,14 +80,14 @@ function ResetPassword() {
               value={form.confirmPassword}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-5 py-3 text-lg rounded-xl border shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
               placeholder="Confirm password"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-lg rounded-xl transition duration-200"
           >
             Reset Password
           </button>
@@ -96,7 +95,7 @@ function ResetPassword() {
 
         {message && (
           <p
-            className={`mt-4 text-center text-sm ${
+            className={`mt-6 text-center text-base ${
               message.includes("successful") ? "text-green-600" : "text-red-600"
             }`}
           >
@@ -109,3 +108,5 @@ function ResetPassword() {
 }
 
 export default ResetPassword;
+
+
