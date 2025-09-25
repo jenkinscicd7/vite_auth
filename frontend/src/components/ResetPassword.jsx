@@ -1,13 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function ResetPassword() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({
-    password: "",
-    confirmPassword: "",
-  });
+  const location = useLocation();
+  const [email, setEmail] = useState("");
+  const [form, setForm] = useState({ password: "", confirmPassword: "" });
   const [message, setMessage] = useState("");
+
+  // get email passed from OTP screen
+  useEffect(() => {
+    if (location.state?.email) {
+      setEmail(location.state.email);
+    }
+  }, [location]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,7 +22,7 @@ function ResetPassword() {
     e.preventDefault();
 
     if (form.password !== form.confirmPassword) {
-      setMessage("Passwords do not match!");
+      setMessage("Passwords do not match");
       return;
     }
 
@@ -26,61 +31,78 @@ function ResetPassword() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          email, // now comes from location.state
           password: form.password,
-          confirm_password: form.confirmPassword,
+          password_confirmation: form.confirmPassword,
         }),
       });
 
+      const data = await response.json();
       if (response.ok) {
-        setMessage("Password reset successful! Redirecting to login...");
-        setTimeout(() => {
-          navigate("/login"); // redirect after 2s
-        }, 2000);
+        setMessage("Password reset successful. You can now log in.");
       } else {
-        setMessage("Error: Could not reset password.");
+        setMessage(data.message || "Something went wrong");
       }
     } catch (error) {
-      setMessage("Server error. Please try again later.");
+      setMessage("Network error. Try again.");
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-semibold mb-4 text-center">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Reset Password
         </h2>
-        <form onSubmit={handleSubmit}>
-          <label className="block mb-2 font-medium">New Password</label>
-          <input
-            type="password"
-            name="password"
-            className="w-full p-2 border rounded mb-4"
-            placeholder="Enter new password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
 
-          <label className="block mb-2 font-medium">Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            className="w-full p-2 border rounded mb-4"
-            placeholder="Confirm new password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            required
-          />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              New Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Enter new password"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Confirm password"
+            />
+          </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
           >
             Reset Password
           </button>
         </form>
-        {message && <p className="mt-4 text-center text-sm">{message}</p>}
+
+        {message && (
+          <p
+            className={`mt-4 text-center text-sm ${
+              message.includes("successful") ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {message}
+          </p>
+        )}
       </div>
     </div>
   );
